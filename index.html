@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>UK HPC Facilities</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/local.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+<!-- The presentation content -->
+<section>
+	<h1>HPC facilities for UK researchers</h1>
+	<p>Andy Turner, EPCC<br/>
+	<a href="mailto:a.turner@epcc.ed.ac.uk">a.turner@epcc.ed.ac.uk</a></p>
+	<img class="plain" src="img/epcc_logo.png" />
+</section>
+
+<section>
+
+	<img class="plain" src="img/cc_licence.png"/>
+	<p>Slide content is available under under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US">
+        Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</a></p>
+
+        <p style="font-size: 0.35em">This means you are free to copy and redistribute the material and adapt
+		and build on the material under the following terms: You must give appropriate credit, provide
+		a link to the license and indicate if changes were made. If you adapt or build on the material
+		you must distribute your work under the same license as the original.<br/>
+		Note that this presentation contains images owned by others. Please seek their permission
+		before reusing these images.</p>
+
+	<p>Built using <a href="https://github.com/hakimel/reveal.js">reveal.js</a></p>
+	<p style="font-size: 0.35em">reveal.js is available under the
+		<a href="https://github.com/hakimel/reveal.js/blob/master/LICENSE">MIT licence</a></p>
+</section>
+
+<section>
+	<img class="plain" src="img/hpcuk_logo.png" />
+
+	<p>Information on facilities and how to access them</p>
+	<p><a href="http://www.hpc-uk.ac.uk">http://www.hpc-uk.ac.uk</a></p>
+
+	<p>Open Source, community developed resource</p>
+</section>
+
+<section id="ukhpc">
+	<h2>UK HPC Facilities</h2>
+
+	<ul>
+		<li>Tier-1 Facilities: ARCHER and DiRAC</li>
+		<li>Tier-2 Facilities: (between Tier-1 and Tier-3!)</li>
+		<li>Tier-3 Facilities: institutional facilities</li>
+	</ul>
+
+	<p>Distinctions often blur between different tiers</p>
+</section>
+
+<section>
+	<h3>Access overview</h3>
+	<table style="font-size: 0.75em">
+		<tr>
+			<th></th><th>Free</th><th>Paid*</td>
+		</tr>
+		<tr>
+			<td>EPSRC remit</td><td>ARCHER, Tier-2 HPC</td><td></td>
+		</tr>
+		<tr>
+			<td>NERC remit</td><td>ARCHER</td><td>Tier-2 HPC</td>
+		</tr>
+		<tr>
+			<td>STFC remit</td><td>DiRAC</td><td>Tier-2 HPC</td>
+		</tr>
+		<tr>
+			<td>Other remit</td><td></td><td>ARCHER, Tier-2 HPC</td>
+		</tr>
+	</table>
+
+	<p class="note">*includes adding explicit costs to grant applications</p>
+	<p class="breadcrumb"><em>| <a href="#/ukhpc">UK HPC Facilities</a></em></p>
+</section>
+
+<section id="archer">
+	<img class="plain" src="img/archer_logo.png" />
+	<p><a href="http://www.archer.ac.uk">http://www.archer.ac.uk</a></p>
+</section>
+
+<section>
+	<h4>UK National Supercomputer Service</h4>
+	<div class="lblock">
+		<ul>
+			<li>Aimed at 1000+ core calculations</li>
+			<li>Managed by EPSRC</li>
+	</div>
+	<div class="lblock">
+		<img class="plain" src="img/archer_cabs.png" />
+	</div>
+	<p class="breadcrumb"><em>| <a href="#/ukhpc">UK HPC Facilities</a>
+	&gt; <a href="#/archer">Tier-1: ARCHER</a></em></p>
+</section>
+
+<section>
+	<h4>ARCHER Service Design</h4>
+	<ul>
+		<li>High core count distributed memory: 1000+ cores</li>
+		<li>"Traditional" capability HPC</li>
+		<li>Main users: Materials science, Climate/ocean modelling, CFD, <em>etc.</em></li>
+		<li>Growing interest in non-traditional use: <em>e.g.</em> data science, bioinformatics</li>
+	</ul>
+	<p class="breadcrumb"><em>| <a href="#/ukhpc">UK HPC Facilities</a>
+	&gt; <a href="#/archer">Tier-1: ARCHER</a></em></p>
+</section>
+
+<section id="dirac">
+	<img class="plain" src="img/dirac.png" />
+	<p><a href="http://www.dirac.ac.uk">http://www.dirac.ac.uk</a></p>
+</section>
+
+<section>
+	<h4>STFC National HPC Service</h4>
+	<div class="lblock">
+		<ul>
+			<li>Range of different systems</li>
+			<li>Covers capacity to capability use</li>
+			<li>Main HPC resource for STFC</li>
+		</ul>
+	</div>
+	<div class="rblock">
+		<img class="plain" src="img/bgq.png" />
+	</div>
+	<p class="breadcrumb"><em>| <a href="#/ukhpc">UK HPC Facilities</a>
+	&gt; <a href="#/dirac">Tier-1: DiRAC</a></em></p>
+</section>
+
+<section id="tier2">
+	<h2>Tier-2: National Facilities</h2>
+</section>
+
+<section>
+	<div class="lblock">
+		<p>Nationally accessible, located across the UK</p>
+		<ul>
+			<li>Cirrus (EPCC): Intel Xeon</li>
+			<li>CSD3 (Cambridge): Intel Xeon/Xeon Phi, NVidia GPGPU</li>
+			<li>HPC Midlands +: Intel Xeon</li>
+			<li>Materials Modelling Hub (UCL): Intel Xeon</li>
+			<li>Isambard (GW4): Cavium AMD64</li>
+			<li>JADE (Oxford): NVidia GPGPU</li>
+		</ul>
+	</div>
+	<div class="rblock">
+		<img src="img/tier2-map.png" />
+	</div>
+	<p class="breadcrumb"><em>| <a href="#/ukhpc">UK HPC Facilities</a>
+	&gt; <a href="#/tier2">Tier-2</a></em></p>
+</section>
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
