@@ -1,6 +1,11 @@
 /*
  * CSS local to this presentation
  */
+dl {
+   display: block;
+   float: left;
+   width: 100%;
+}
 p.breadcrumb {
    color: #666;
    background: transparent;
