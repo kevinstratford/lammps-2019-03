@@ -1,10 +1,17 @@
 /*
  * CSS local to this presentation
  */
+p {
+   font-size: 0.75em;
+}
+ul {
+   font-size: 0.75em;
+}
 dl {
    display: block;
    float: left;
    width: 100%;
+   font-size: 0.75em;
 }
 p.breadcrumb {
    color: #666;
