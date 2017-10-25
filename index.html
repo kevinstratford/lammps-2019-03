@@ -59,10 +59,11 @@
 	<ul>
 		<li><a href="#/epcc">EPCC</a></li>
 		<li><a href="#/ukhpc">UK HPC Facilities</a>
-			<ul>
+			<ul class="inner">
 				<li><a href="#/archer">ARCHER</a> - UK National Supercomputing Service</li>
 				<li><a href="#/dirac">DiRAC</a> - STFC national HPC service</li>
-				<li><a href="#/tier2">UK National Tier-2 HPC resources</a></li>
+				<li><a href="#/tier2">UK National Tier-2 HPC facilities</a></li>
+				<li><a href="#/other">Other facilities</a></li>
 
 			</ul></li>
 		<li><a href="#/support">Getting Advice</a></li>
@@ -81,8 +82,8 @@
 	<div class="lblock">
 		<ul>
 			<li>One of Europe's top HPC centres</li>
-			<li>27 years old = ~90 staff</li>
-			<li>Fully self-sustaining £8m turnover per annum</li>
+			<li>27 years old: ~90 staff</li>
+			<li>Fully self-sustaining: £8m turnover per annum</li>
 			<li>Leading UK national HPC provider</li>
 			<li>Range of expertise: HPC to Data Science and Cloud</li>
 			<li>Work closely with academia and industry</li>
@@ -94,8 +95,7 @@
 		<img class="plain" src="img/brain_image.png" />
 		<ul>
 			<li>FARR INSTITUTE: data analytics service for NHS Scotland safe haven</li>
-			<li>NEXTGENIO: exascale server desgin for next generation I/O and storage 
-				technologies from Intel</li>
+			<li>SSI: better software, better research</li>
 			<li>FORTISSIMO: Europe's largest collaborative programme for HPC with SMEs</li>
 		</ul>
 	</div>
@@ -103,25 +103,11 @@
 </section>
 
 <section>
-	<h3>How can EPCC help you?</h3>
-
-	<ul>
-		<li>Advice on using computing in your research</li>
-		<li>Expertise for your research:
-			<ul>
-				<li>Added to research proposals</li>
-				<li>Co-supervise an MSc project</li>
-			</ul></li>
-		<li>Training courses</li>
-	</ul>
-</section>
-
-<section>
 	<img class="plain" src="img/acf.png" />
 </section>
 
 <section>
-	<h3>Sevices hosted at EPCC ACF</h3>
+	<h3>Facilities hosted at EPCC ACF</h3>
 	<ul>
 		<li>ARCHER - UK National Supercomputing Service</li>
 		<li>DiRAC Extreme Scaling - STFC national HPC service</li>
@@ -161,10 +147,12 @@
 </section>
 
 <section>
+	<h3>UK HPC Services Covered</h3>
 	<ul>
 		<li><a href="#/archer">ARCHER</a> - UK National Supercomputing Service</li>
 		<li><a href="#/dirac">DiRAC</a> - STFC national HPC service</li>
-		<li><a href="#/tier2">UK National Tier-2 HPC resources</a></li>
+		<li><a href="#/tier2">UK National Tier-2 HPC facilities</a></li>
+		<li><a href="#/tier2">Other facilities</a></li>
 	</ul>
 </section>
 
@@ -196,7 +184,7 @@
 		<li>Main users: Materials science, Climate/ocean modelling, CFD, <em>etc.</em></li>
 		<li>Growing interest in non-traditional use: <em>e.g.</em> data science, bioinformatics</li>
 	</ul>
-	<p>Cray XC30: 118,080 cores (4920 nodes)<br/>2&times; 12-core Xeon per node; 64/128 GiB DDR3</p>
+	<p>Cray XC30: 118,080 cores (4920 nodes)<br/>2&times; 12-core Xeon per node; 64/128 GiB memory</p>
 </section>
 
 <section>
@@ -359,6 +347,26 @@
 </section>
 
 <section>
+	<ul>
+		<li>Wide range of supported software:
+			<ul class="inner">
+				<li>HPC applications: <em>e.g.</em> CASTEP, OpenFOAM, GROMACS</li>
+				<li>Data science software: <em>e.g.</em> Hadoop, Spark</li>
+				<li>Profiling and debugging tools</li>
+			</ul></li>
+		<li>Customisable environment:
+			<ul class="inner">
+				<li>Singularity containers</li>
+				<li>Hosting of user-controlled virtual machines</li>
+			</ul></li>
+		<li>EPCC benchmarking common applications across all Tier2 and ARCHER
+			<ul class="inner">
+				<li><a href="https://github.com/ARCHER-CSE/archer-benchmarks">https://github.com/ARCHER-CSE/archer-benchmarks</a></li>
+			</ul></li>
+	</ul>
+</section>
+
+<section>
 	<h4>Cirrus access overview</h4>
 	<table style="font-size: 0.75em">
 		<tr>
@@ -371,7 +379,7 @@
 			<td>Instant Access</td><td>EPSRC</td><td></td>
 		</tr>
 		<tr>
-			<td>Grant</td><td>Any</td><td></td>
+			<td>Grant</td><td>Any</td><td>Notional cost for EPSRC</td>
 		</tr>
 		<tr>
 			<td>RAP: Open Access</td><td>EPSRC</td><td>3 calls per year</td>
@@ -419,15 +427,69 @@
 
 </section>
 
+<!-- Other Facilities -------------------------------------------------------------- -->
+
+<section id="other">
+	<h2>Other HPC Facilities</h2>
+</section>
+
+<section>
+	<h3>International Facilities</h3>
+
+	<dl style="font-size: 0.75em">
+		<dt>PRACE</dt>
+		<dd>Large-scale European facilities</dd>
+		<dd>Number of different call types available</dd>
+		<dd><a href="http://www.prace-ri.eu">http://www.prace-ri.eu</a></dd>
+		<dt>US DoE INCITE</dt>
+		<dd>Access to the largest HPC facilities in the USA</dd>
+		<dd>Need to demonstrate need for extreme parallel scaling</dd>
+		<dd><a href="http://www.doeleadershipcomputing.org/incite-program/">http://www.doeleadershipcomputing.org/incite-program/</a></dd>
+	</dl>
+</section>
+
+<section>
+	<h3>Public Cloud</h3>
+
+	<p>Microsoft offers HPC clusters within the Azure public cloud and plan to
+	offer Cray supercomputer access.</p>
+
+	<ul>
+		<li>Complex to setup at the moment</li>
+		<li>Cost per hour is more expensive than UK facilities</li>
+		<li>Can be extremely flexible and grow/shrink on-demand</li>
+	</ul>
+
+	<p><a href="https://azure.microsoft.com/en-gb/solutions/high-performance-computing/">https://azure.microsoft.com/en-gb/solutions/high-performance-computing/</a></p>
+</section>
+
 <!-- Support Section ------------------------------------------------------------------------ -->
 
 <section id="support">
 	<h2>Getting Advice</h2>
-	<img class="plain" src="img/question.png" />
+	<img class="plain" src="img/mortar-launch-fail.gif" />
 </section>
 
 <section>
 	<h3>From EPCC</h3>
+
+	<ul>
+		<li>Helpdesks: ARCHER and Cirrus
+			<ul class="inner">
+				<li>Service focussed</li>
+				<li>Access to full range of EPCC expertise as required</li>
+			</li></ul>
+		<li>Collaborative projects
+			<ul class="inner">
+				<li>Add EPCC staff to proposals</li>
+				<li>Use up small amounts of "left-over" money in existing grants</li>
+				<li>Co-supervise MSc projects</li>
+			</li></ul>
+		<li>Training courses</li>
+		<li>Informal advice: always happy to chat to you!</li>
+	</ul>
+
+	<p><a href="mailto:info@epcc.ed.ac.uk">info@epcc.ed.ac.uk</a></p>
 </section>
 
 <section>
@@ -450,7 +512,7 @@
 <section>
 	<img class="plain" src="img/rse_banner.png" />
 
-	<p>Campaign for the recognition of the RSE role, creating a community of RSE's and 
+	<p>Campaigning for the recognition of the RSE role, creating a community of RSE's and 
 		organising events for RSE's to meet, exchange knowledge and collaborate.</p>
 
 	<p>Join the community!</p>
@@ -466,40 +528,39 @@
 </section>
 
 <section>
-	<h3>Access Summary</h3>
-	<table style="font-size: 0.75em">
-		<tr>
-			<th></th><th>Free</th><th>Paid*</td>
-		</tr>
-		<tr>
-			<td>EPSRC remit</td><td>ARCHER, Tier-2 HPC</td><td></td>
-		</tr>
-		<tr>
-			<td>NERC remit</td><td>ARCHER</td><td>Tier-2 HPC</td>
-		</tr>
-		<tr>
-			<td>STFC remit</td><td>DiRAC</td><td>Tier-2 HPC</td>
-		</tr>
-		<tr>
-			<td>Other remit</td><td></td><td>ARCHER, Tier-2 HPC</td>
-		</tr>
-	</table>
+	<h3>Test Access</h3>
 
-	<p class="note">*includes adding explicit costs to grant applications</p>
+	<p><a href="http://www.cirrus.ac.uk/access">Scottish Seedcorn:</a> Access to Cirrus for any researcher based at Scottish institution</p>
+	<p><a href="http://www.archer.ac.uk">ARCHER Driving Test:</a> Access to ARCHER for any researcher based at UK institution</p>
+	<p><a href="http://www.hpc-uk.ac.uk/access">Instant Access:</a> Access to ARCHER, Cirrus, CSD3 for EPSRC-remit research</p>
+	<p><a href="http://www.dirac.ac.uk/access.html">DiRAC Seedcorn:</a> Access to DiRAC for STFC-remit research</p>
 </section>
 
+<section>
+	<h3>Specific Calls for Compute Time</h3>
+
+	<p><a href="http://www.hpc-uk.ac.uk/access">EPSRC RAP:</a> Access to ARCHER and Tier2 for EPSRC-remit research</p>
+	<p><a href="http://www.dirac.ac.uk/access.html">DiRAC RAC:</a> Access to DiRAC for STFC-remit research</p>
+</section>
+
+<section>
+	<h3>Access via grant proposals</h3>
+
+	<p><a href="http://www.archer.ac.uk/access">ARCHER:</a> any funding body possible - notional costs for EPSRC/NERC</p>
+	<p><a href="http://www.hpc-uk.ac.uk/access">Tier2:</a> any funding body possible - notional costs for EPSRC</p>
+	<p><a href="http://www.dirac.ac.uk/access.html">DiRAC:</a> no time via grant applications - DiRAC RAC used instead</p>
+</section>
 
 <section>
 	<ul>
 		<li>Wide range of HPC facilities available to UK researchers</li>
 		<li>Different access mechanisms for different research areas
-			<ul>
+			<ul class="inner">
 				<li>Cirrus available to test for all Scottish researchers</li>
 			</ul></li>
-		<li>EPCC can help in a number of ways</li>
-		<li>Local HPC Champions (and EPCC!) can help you find the correct resource for your research</li>
+		<li>EPCC can support your research in a number of ways - please get in touch!</li>
+		<li>HPC Champions and RSE network also available for help and support.</li>
 	</ul>
-	<p><a href="http://www.hpc-uk.ac.uk">http://www.hpc-uk.ac.uk</a></p>
 </section>
 
 			</div>
