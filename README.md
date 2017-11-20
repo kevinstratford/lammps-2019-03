@@ -1,6 +1,6 @@
-# HPC facilities available to UK-based researchers
+# GPU course slides
 
-Presentation on different facilities available to UK researchers.
+This is a temporary measure.
 
 Built using [reveal.js](https://github.com/hakimel/reveal.js).
 

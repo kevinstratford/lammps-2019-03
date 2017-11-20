@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>reveal.js</title>
+
+-<link rel="stylesheet" href="../css/reveal.css">
+<link rel="stylesheet" href="../css/theme/white.css">
+<link rel="stylesheet" href="../css/local.css">
+
+<!-- Theme used for syntax highlighting of code -->
+<link rel="stylesheet" href="../lib/css/vs.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+</head>
+
+<!-- Start of presentation --> 
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <section>
+
+    <h1 style = "text-transform: none !important">Using Directives</h1>
+    <!--
+    <p>Kevin Stratford</p>
+    <p> kevin@epcc.ed.ac.uk </p> -->
+    <br>
+    <p>Material by: Mark Bull, Alan Gray, Alistair Hart (Cray),
+       Kevin Stratford </p>
+    <img class = "plain" src ="../img/epcc_logo.png" alt = "EPCC Logo" />
+
+  </section>
+
+  <section> <h4> Aim </h4>
+
+    <dl>
+      <dt> An instruction, or directive, to compiler to generate parallel
+           code for GPU (more generally, "accelerator")</dt>
+      <ul>
+        <li> OpenACC </li>
+        <li> OpenMP </li>
+      </ul>
+    </dl>
+  </section>
+
+  <section> <h4> OpenACC: Directives for Accelerators </h4>
+
+     <dl>
+        <dt> Standard first announced in November 2011 </dt>
+        <ul class = "inner">
+           <li> <a target = "_blank"
+                   href = "http://www.openacc.org/">
+                           http://www.openacc.org/</a>
+           <li> Many relevant industry bodies involved
+           <li> C/C++ or Fortran
+           <li> Support from Cray, PGI (Gnu gcc 7) compilers
+         </ul>
+     </dl>
+  </section>
+
+
+  <section> <h4> Directive format </h4>
+
+      <pre><code class = "cpp" data-trim>
+/* C: Example OpenACC directive */
+
+#pragma acc parallel
+{
+  /* ...structured block .. */
+}
+      </code></pre>
+      <pre><code class = "fortran">
+! Fortran: Example OpenACC directive
+
+!$acc parallel
+! ... structured block ...
+!$acc end parallel 
+      </code></pre>
+      <dl>
+        <dt> Both ignored if non-OpenACC compilation
+      </dl>
+
+  </section>
+
+  <section>
+     <h4>  Parallelism based on loops </h4>
+
+      <dl>
+        <dt> C:
+      </dl>
+      <pre><code class = "cpp" data-trim>
+#pragma acc parallel loop
+for (n = 0; n < NSIZE; n++) {
+  /* ...structured block .. */
+}
+      </code></pre>
+      <dl>
+        <dt> Fortran:
+      </dl>
+      <pre><code class = "fortran" data-trim>
+!$acc parallel loop
+do n = 1, NSIZE
+  ! ...loop body...
+end do
+!$acc end parallel loop
+      </code></pre>
+
+
+  </section>
+
+</div>
+</div>
+
+<!-- End of presentation -->
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+// More info about config & dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+  controls: false,
+  slideNumber: true,
+  center: false,
+  math: { mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+         // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+  dependencies: [
+	{ src: '../plugin/markdown/marked.js' },
+	{ src: '../plugin/markdown/markdown.js' },
+	{ src: '../plugin/notes/notes.js', async: true },
+        { src: '../plugin/math/math.js', async: true},
+	{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+});
+</script>
+
+</body>
+</html>
