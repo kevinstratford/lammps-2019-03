@@ -46,3 +46,10 @@ div.lblock {
    width: 50%;
    font-size: 0.75em;
 }
+
+/* Without this, the slide number is a fixed font size, which makes it
+ * a bit small for presentation */
+
+.reveal .slide-number {
+  font-size: 100%;
+}
