@@ -1,8 +1,17 @@
 /*
  * CSS local to this presentation
  */
+h3 {
+   text-transform: none !important;
+}
+h4 {
+   text-transform: none !important;
+}
 p {
    font-size: 0.75em;
+}
+pre {
+   box-shadow: none !important;
 }
 ul {
    font-size: 0.75em;
