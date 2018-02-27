@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>reveal.js</title>
+
+<link rel="stylesheet" href="../css/reveal.css">
+<link rel="stylesheet" href="../css/theme/white.css">
+<link rel="stylesheet" href="../css/local.css">
+
+<!-- Theme used for syntax highlighting of code -->
+<link rel="stylesheet" href="../lib/css/vs.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+</head>
+
+<!-- Start of presentation --> 
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <section>
+    <h4> Overview </h4>
+
+    <ul>
+      <li> Portability and Performance Portability</li>
+      <li> Patterns, Policies, and Loop Bodies </li>
+      <li> Data layout and Views </li>
+      <li> Heirarchical Parallelism </li>
+      <li> Other features </li>
+      <li> Comments / Summary </li>
+    </ul>
+  </section>
+
+  <section>
+      <h4> The Nature of the Problem </h4>
+ 
+  </section>
+
+  <section>
+     <h4> The Scale of the Problem </h4>
+
+     <p> Consider Summit (IBM Power9 + NVIDIA Tesla V100) </p>
+
+     <table>
+       <thead>
+         <tr> <th> Level </th>  <th> Consisting... </th><th> Threads</th> </tr>
+       </thead>
+       <tbody>
+         <tr> <th> Warp </th> <th> 32 SIMT </th> <th> 32</th> </tr>
+         <tr> <th> SM </th> <th> 64 Warps </th> <th> 2,048</th> </tr>
+         <tr> <th> GPC </th> <th> 80 SMs </th> <th> 163,840</th> </tr>
+         <tr> <th> Node </th> <th> 2x3 GPCs </th> <th> 983,040</th> </tr>
+         <tr> <th> Machine </th> <th> 4600 Nodes </th> <th> 4,521,984,000</th>
+         </tr>
+       </tbody>
+     </table>
+
+  </section>
+
+  <section>
+    <h4> Pattern, Policy, and Loop Body</h4>
+
+    <pre><code class = "cpp" data-trim>
+/* Consider a loop: */
+
+for (int index = 0; index < nIterations; index++) {
+   result[index] = 2*index;
+}
+
+/* Pattern... */
+for (...)
+
+/* Execution Policy... */
+(int index = 0; index < nIterations; index++)
+
+/* Body... */
+result[index] = 2*index;
+    </code></pre>
+
+  <p style = "text-align: left; font-size: 80%">
+  A combination of pattern and policy drives execution of the body </p>
+
+  </section>
+
+  <section>
+
+    <h4> Consider OpenMP </h4>
+
+    <pre><code class = "cpp" data-trim>
+    #pragma omp parallel for
+    for (int index = 0; index < nIterations; index++) {
+      result[index] = 2*index;
+    }
+
+    /* Pattern ... */
+    #pragma omp ... for
+    for (...)
+
+    /* Policy ... */
+    #pragma omp parallel ...
+    ... (int index = 0; index < nIterations; index++)    
+
+    /* Body ... */
+    </code></pre>
+
+  <p style = "text-align: left; font-size: 80%">
+  Distribute iterations of the body between asynchronous threads
+
+  </section>
+
+  <section>
+
+    <h4> Kokkos </h4>
+
+    <pre><code class = "cpp" data-trim>
+
+    #include "Kokkos_Core.hpp"
+    ...
+    Kokkos::parallel_for(policy, body);
+
+    /* ...being pattern, policy, computational body */
+    </code></pre>
+
+
+  </section>
+
+</div>
+</div>
+
+<!-- End of presentation -->
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+// More info about config & dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+  controls: false,
+  slideNumber: true,
+  center: false,
+  math: { mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full'
+         // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+  dependencies: [
+	{ src: '../plugin/markdown/marked.js' },
+	{ src: '../plugin/markdown/markdown.js' },
+	{ src: '../plugin/notes/notes.js', async: true },
+        { src: '../plugin/math/math.js', async: true},
+	{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+});
+</script>
+
+</body>
+</html>
