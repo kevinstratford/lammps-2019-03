@@ -6,6 +6,7 @@ h3 {
 }
 h4 {
    text-transform: none !important;
+   text-align: left;
 }
 p {
    font-size: 0.75em;
@@ -19,11 +20,13 @@ ul {
 ul.inner {
    font-size: 0.75em;
 }
+
 dl {
    display: block;
    float: left;
    width: 100%;
 }
+
 p.breadcrumb {
    color: #666;
    background: transparent;
@@ -52,4 +55,8 @@ div.lblock {
 
 .reveal .slide-number {
   font-size: 100%;
+}
+
+.reveal p {
+  text-align: left;
 }
