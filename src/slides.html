@@ -34,9 +34,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <ul style = "display: block; float: left; width: 100%">
       <li> Portability and Performance Portability</li>
       <li> Patterns, Policies, and Loop Bodies </li>
-      <li> Views, Memory Space, Executtion Space </li>
+      <li> Views, Memory Space, Execution Space </li>
       <li> Data Layout </li>
-      <li> Heirarchical Parallelism </li>
+      <li> Hierarchical Parallelism </li>
       <li> Other features </li>
       <li> Comments / Summary </li>
     </ul>
@@ -44,6 +44,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
   <section>
       <h4> The Nature of the Problem </h4>
+
+      <img class = "plain" src = "./node.png"  alt = "Node architecture">
  
   </section>
 
@@ -73,6 +75,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
     <dl style = "font-size: 80%">
       <dt> Maintain a number of implementations of relevant kernels</dt>
+        <ul class = "inner">
+          <li> May be appropriate... </li>
+        </ul>
       <dt> Domain Specific Language (DSL) </dt>
         <ul class = "inner">
            <li> Usually suggests some source-to-source translation </li>
@@ -130,7 +135,7 @@ x[index] = a*x[index];
     #pragma omp parallel ...
     ... (int index = 0; index < nElements; index++)    
 
-    /* Body ... */
+    /* Body (as before) ... */
     </code></pre>
 
   <p style = "font-size: 80%">
@@ -145,7 +150,9 @@ x[index] = a*x[index];
     <pre><code class = "cpp" data-trim>
 
     #include "Kokkos_Core.hpp"
-    ...
+
+    /* ... */
+
     Kokkos::parallel_for(policy, body);
 
     /* ...being pattern, policy, computational body */
@@ -160,7 +167,8 @@ x[index] = a*x[index];
     <h4> Loop body </h4>
 
     <pre><code class = "cpp" data-trim>
-    // Use a function object...
+    /* Use a function object... */
+
     struct Scal {
       double a_;
       double * x_;
@@ -172,7 +180,12 @@ x[index] = a*x[index];
     </code></pre>
 
     <pre><code class = "cpp" data-trim>
-      // ... with the most simple policy
+      /* ... with a policy which states that the range is
+       * of the appropriate length "nElements" */
+
+      double a = 2.0;
+      double * x = new double[nElements];
+
       Scal scal(a, x);
       Kokkos::parallel_for(nElements, scal);
     </code></pre>
@@ -186,15 +199,15 @@ x[index] = a*x[index];
 
 
     <pre><code class = "cpp" data-trim>
-      // In scope are ...
+      /* As before, we have in scope ... */
       double a = 2.0;
-      double * = new double[nElements];
+      double * x = new double[nElements];
 
-      // ...
+      /* ... */
+
       Kokkos::parallel_for(nElements, [=] (int index) {
-          x[index] = a*x[index];
-        };
-      );
+        x[index] = a*x[index];
+      });
     </code></pre>
 
   </section>
@@ -204,13 +217,16 @@ x[index] = a*x[index];
     <h4> A different pattern</h4>
 
     <pre><code class = "cpp" data-trim>
-       // Consider a dot product = a.b
+       /* Consider a vector product = < a b > */
+
        double * a = new double[nElements];
        double * b = new double[nElements];
-       ...
-       dot = 0.0;
+
+       /*  ...  */
+
+       double result = 0.0;
        for (int index = 0; index < nElements; index++) {
-         dot += a[index]*b[index];
+         result += a[index]*b[index];
        }
     </code></pre>
 
@@ -223,13 +239,13 @@ x[index] = a*x[index];
     <pre class = "stretch"><code class = "cpp" data-trim>
        /* ... we have a reduction ... */
 
-       #omp pragma parallel for reduction (+: dot)
+       #omp pragma parallel for reduction (+: result)
        for (int index = 0; index < nElements; index++) {
-         dot += a[index]*b[index];
+         result += a[index]*b[index];
        }
 
        /* Pattern ... */
-       #pragma ... for reduction(+: dot)
+       #pragma ... for reduction(+: result)
        for (...)
 
        /* Policy... */
@@ -247,16 +263,16 @@ x[index] = a*x[index];
 
        /* ... use Kokkos::parallel_reduce() pattern ... */
 
-       double dot;
+       double result = 0.0;
 
        Kokkos::parallel_reduce(nElements, [=] (int index, double & sum) {
          /* Form a contribution to the sum... */
          sum += a[index]*b[index];
-       }, dot);
+       }, result);
 
 
        /* nb.
-        * 1: sum is "thread-private" and managed by Kokkos.
+        * 1: variable sum is "thread-private" and managed by Kokkos.
         *
         * 2: nowhere have we said this is a sum: it is a default
         *    (one of many in Kokkos)
@@ -268,9 +284,6 @@ x[index] = a*x[index];
   <section>
     <h4> Views, Memory Space, Execution Space </h4>
 
-    <p> Where is my data!? </p>
-    <p> Where is my code executing !? </p>
-    <p> How can I move my data between different memory spaces!?</p>
   </section>
 
 
@@ -394,7 +407,9 @@ x[index] = a*x[index];
   </section>
 
   <section>
-    Layouts
+    <h4> Row and Column Major </h4>
+
+    <img class = "plain" src = "right-left.png" alt = "Data layouts">
   </section>
 
   <section>
@@ -409,13 +424,14 @@ x[index] = a*x[index];
        Kokkos::View &lt double *,  Layout &gt x("Vector x", N);
        Kokkos::View &lt double *,  Layout &gt y("Vector y", M);
 
-       ...
-       Kokkos::parallel_reduce(M, [=] (int i, double & partSum) {
+       /* ... */
+
+       Kokkos::parallel_reduce(M, [=] (int i, double & rSum) {
          double sum = 0.0;
          for (int j = 0; j < N; j++) {
            sum += A(i,j)*x(j);
          }
-         partSum += y(i)*sum;
+         rSum += y(i)*sum;
        }, result);
     </code></pre>
 
@@ -426,6 +442,18 @@ x[index] = a*x[index];
 
   <section>
     <h4> Default Layouts </h4>
+
+    <p  style = "font-size: 80%">
+    Each <code>ExecutionSpace</code> has associated default layout
+
+    <dl style = "font-size: 80%">
+      <dt> CPU uses: <code> Kokkos::LayoutRight </code> </dt>
+      <dt> GPU uses: <code> Kokkos::LayoutLeft  </code> </dt>
+    </dl>
+
+    <p style = "font-size: 80%; line-height: 300%">
+    Appropriate layout crucial to performance.
+
   </section>
 
   <section>
@@ -435,29 +463,154 @@ x[index] = a*x[index];
   <section>
     <h4> Parallelism </h4>
 
+    <div style = "width: 100%; position: absolute; z-index: 1">
+    <pre><code class = "cpp" data-trim>
+
+       /* Parallelism is over rows M ... */
+
+       Kokkos::parallel_reduce(M, [=] (int i, double & rSum) {
+         double sum = 0.0;
+         for (int j = 0; j < N; j++) {
+           sum += A(i,j)*x(j);
+         }
+         rSum += y(i)*sum;
+       }, result);
+    </code></pre>
+
+    <div style = "position: absolute; width: 40%;
+                  margin-left: 500px; margin-top: -150px; z-index: 2">
+    <img class = "plain" src = "./right.png" alt = "Rwo major picture">
+    </div>
+    </div>
+
   </section>
 
   <section>
-    <h4> Final Hierarchy </h4>
+     <h4> Team policy </h4>
 
     <pre class = "stretch"><code class = "cpp" data-trim>
-    TeamPolicy <> teamPolicy(numerOfTeams, threadsPerTeam, vectorLength);
-    Kokkos::parallel_for(teamPolicy, [=] (member_type & teamMember [,...]) {
-      /* ... */
 
-      TeamThreadRange teamThreadRange(temMember, rangeSize);
-      Kokkos::parallel_for(teamThreadRange, [=] (int index [,...]) {
+       /* A shorthand: */ 
+       typedef Kokkos::TeamPolicy::member_type member_type;
 
-        /* ... */
-        ThreadVectorRange(teamMember, vectorRange);
-        Kokkos::parallel_for(threadVectorRange, [=] (int indexv [,...]) {
-        });
+       /* Create a team policy in default execution space... */
 
+       Kokkos::TeamPolicy &lt&gt teamPolicy(numberOfTeams, teamSize);
+
+       Kokkos::parallel_reduce(teamPolicy,
+         [=] (const member_type & teamMember, double & rSum) {
+
+           /* All threads in team are active and share memory */
+
+           int myTeam = teamMember.league_rank();
+           int myRank = teamMember.team_rank();
+
+           /* Need parallelism (a reduction) over columns ... 
+            * ... and compute contribution rSum ... */
+
+       }, result);
     </code></pre>
-  
 
   </section>
 
+  <section>
+ 
+   <h4> Nested Parallelism </h4>
+
+   <pre class = "stretch" style = "font-size: 50%">
+   <code class = "cpp" data-trim>
+   /* < y^T Ax > */
+   Kokkos::TeamPolicy <> teamPolicy(M, Kokkos::AUTO);
+
+   Kokkos::parallel_reduce(teamPolicy,
+     [=] (const member_type & teamMember, double & rSum) {
+
+       double sum = 0.0;
+       int i = teamMember.league_rank();                         // ie., row
+
+       Kokkos::TeamThreadRange teamThreadPolicy(teamMember, N);  // columns
+
+       Kokkos::parallel_reduce(teamThreadPolicy, [=] (int j, double & cSum) {
+         cSum += A(i,j)*x(j);
+       }, sum);
+
+        /* Care .... */
+        if (teamMember.team_rank() == 0) rSum += y(i)*sum;
+    }, result);
+    </code></pre>
+  </section>
+ 
+  <section>
+    <h4> Including Vector Level Parallelism </h4>
+
+    <pre class = "stretch" style = "font-size: 50%">
+    <code class = "cpp" data-trim>
+    /* Schematically... */
+    /* Outer level is TeamPolicy */
+    TeamPolicy <> teamPolicy(numberOfTeams, threadsPerTeam, vectorLength);
+    Kokkos::parallel_for(teamPolicy, [=] (member_type & teamMember [,...]) {
+
+      /* Team level code ...*/
+
+      TeamThreadRange teamThreadRange(teamMember, rangeSize);
+      Kokkos::parallel_for(teamThreadRange, [=] (int index [,...]) {
+
+        /* Thread level code ... */
+
+        ThreadVectorRange threadVectorRange(teamMember, vectorRange);
+        Kokkos::parallel_for(threadVectorRange, [=] (int indexv [,...]) {
+          /* Vector level code ...*/
+        });
+      });
+    });
+
+    </code></pre>
+  
+  </section>
+
+  <section>
+    <h4> Summary </h4>
+
+    <dl style = "font-size: 100%">
+      <dt> Identify parallel patterns...</dt>
+        <ul class = "inner">
+          <li> for, reduce, scan, task graph, ... </li>
+        </ul>
+      <dt> Control memory space and execution space </dt>
+        <ul class = "inner">
+          <li> Host space, Cuda space, CudaUVM space, ... </li>
+        </ul>
+      <dt> Control memory layout </dt>
+        <ul class = "inner">
+          <li> LayoutLeft, LayoutRight </li>
+        </ul>
+      <dt> Specify execution configuration via policy </dt>
+        <ul class = "inner">
+          <li> Range policy, Team policy, ND Range, Loop tiling, DIY, ... </li>
+        </ul>
+    </dl>
+
+  </section>
+
+  <section>
+    <h4> Other Features</h4>
+
+    <dl style = "font-size: 80%">
+      <dt> Debugging / profiling tools </dt>
+        <ul class = "inner">
+          <li> Hooks for Intel VTUNE, nvprof, DIY, ... </li>
+        </ul>
+      <dt> Help for incremental refactoring of large exsiting code bases </dt>
+        <ul class = "inner">
+          <li> DualView, "memory coherency", ... </li>
+        </ul>
+      <dt> Support for AMD via ROCm </dt>
+        <ul class = "inner">
+          <li> Planned for Q4 2018 </li>
+        </ul>
+    </dl>
+
+  </section>
 
 </div>
 </div>
