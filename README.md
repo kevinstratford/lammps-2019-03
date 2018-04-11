@@ -1,6 +1,6 @@
-# GPU course slides
+# An overview of Kokkos
 
-This is a temporary measure.
+For EPCC.
 
 Built using [reveal.js](https://github.com/hakimel/reveal.js).
 
