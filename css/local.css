@@ -27,6 +27,10 @@ dl {
    width: 100%;
 }
 
+dt {
+   font-weight: normal;
+}
+
 p.breadcrumb {
    color: #666;
    background: transparent;

@@ -1,6 +1,6 @@
-# An overview of Kokkos
+# NAME overview
 
-For EPCC.
+For Exeter workshop.
 
 Built using [reveal.js](https://github.com/hakimel/reveal.js).
 
