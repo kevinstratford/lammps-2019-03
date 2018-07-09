@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="202.98012mm"
+   height="94.725441mm"
+   viewBox="-6.7 0 243.57616 113.67053"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   sodipodi:docname="path1.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5241"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5239"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4553"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4556"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#e80000;fill-opacity:1;fill-rule:evenodd;stroke:#e80000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.76616443"
+     inkscape:cx="316.40944"
+     inkscape:cy="211.18279"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="false"
+     inkscape:snap-bbox="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="830"
+     inkscape:window-x="48"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="-3.8"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     scale-x="1.2"
+     viewbox-x="-6.7">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       empspacing="20"
+       visible="true"
+       originx="59.14819"
+       originy="-256.04256" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(63.35368,10.96782)">
+    <g
+       style="stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="g830"
+       transform="matrix(1.5712196,-0.50000041,0.90714404,0.86602611,-132.59739,49.144803)">
+      <rect
+         y="16.541666"
+         x="31.75"
+         height="63.5"
+         width="116.41666"
+         id="rect817"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path819"
+         d="M 89.958332,80.041667 V 16.541666"
+         style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.90399992;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path821"
+         d="M 31.75,48.291667 H 148.16666"
+         style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50178051px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none"
+       x="-64.575356"
+       y="45.765526"
+       id="text4523"
+       transform="matrix(1.1509959,-0.37620698,0.66452783,0.65160961,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4521"
+         x="-64.575356"
+         y="45.765526"
+         style="stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none">MPI 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50178051px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none"
+       x="-64.575356"
+       y="87.963043"
+       id="text4527"
+       transform="matrix(1.1509959,-0.37620698,0.66452783,0.65160961,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4525"
+         x="-64.575356"
+         y="87.963043"
+         style="stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none">MPI 0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50178051px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none"
+       x="12.786759"
+       y="45.765526"
+       id="text4531"
+       transform="matrix(1.1509959,-0.37620698,0.66452783,0.65160961,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4529"
+         x="12.786759"
+         y="45.765526"
+         style="stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none">MPI 2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50178051px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none"
+       x="12.786759"
+       y="87.963043"
+       id="text4535"
+       transform="matrix(1.1509959,-0.37620698,0.66452783,0.65160961,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4533"
+         x="12.786759"
+         y="87.963043"
+         style="stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none">MPI 3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50189066px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.35219973;stroke-miterlimit:4;stroke-dasharray:none"
+       x="-71.608276"
+       y="24.666775"
+       id="text7370"
+       transform="matrix(1.1509959,-0.37620698,0.66452782,0.65160961,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan8423"
+         x="-71.608276"
+         y="24.666775">  Eulerian Grid</tspan></text>
+    <path
+       style="fill:none;stroke:#e80000;stroke-width:0.35219973;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -30.809522,98.7142 c 0,0 52.327635,-4.613041 67.265079,-21.715976 C 51.393002,59.895288 0.07590612,56.073948 11.59206,46.199564 23.108212,36.325179 33.897662,46.884071 69.698391,29.072187 105.49914,11.260305 117.98375,1.1982927 117.98375,1.1982927"
+       id="path7383"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssc" />
+  </g>
+</svg>
