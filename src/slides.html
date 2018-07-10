@@ -67,17 +67,17 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <ul style = "font-size: 80%; display: block; float: left; width: 100%">
       <li> Shared memory ("threads") </li>
         <ul class = "inner">
-          <li> Compiler chops up loops </li>
           <li> Pros: "easy"; incremental </li>
           <li> Cons: limits you to 1 node; efficiency can be elusive
           <li> Standard model: OpenMP
+          <li> Compiler chops up loops </li>
         </ul>
-      <li> Distributed memory ("tasks")</li>
+      <li> Distributed memory ("processes" or "tasks")</li>
         <ul class = "inner">
-          <li> Programmer must distribute work </li>
           <li> Pros: allows larger problems; better time-to-solution </li>
           <li> Cons: incremental development more difficult </li>
           <li> Standard model: Message Passing Interface (MPI) </li>
+          <li> Programmer must distribute work </li>
         </ul>
     </ul>
 
@@ -159,8 +159,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <dt style = "font-weight: normal"> Solution </dt>
        <ul class = "inner">
          <li> Each tasks forms its own contribution to output </li>
-         <li> Communicate (via messages) contributions (a reduction)
-         <li> Single MPI task performs output
+         <li> Communicate (via messages) and add contributions (a reduction) </li>
+         <li> Single MPI task performs output to file </li>
        </ul>
     </dl>
 
