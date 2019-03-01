@@ -31,292 +31,154 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <section>
     <h4> Overview </h4>
 
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> What does NAME look like? </li>
+    <ul style = "font-size: 100%; display: block; float: left; width: 100%">
+      <li> Existing implementation </li>
         <ul class = "inner">
-          <li> The view from here...</li>
+          <li> Bins, Stencils, Pairs</li>
         </ul>
-      <li> Parallelism: a quick overview </li>
+      <li> Multi-level implementation </li>
         <ul class = "inner">
-          <li> Shared memory and distributed memory</li>
-         <li> ...and how these work in NAME...</li>
+          <li> Bins, Stencils, Pairs, ...</li>
+          <li> Communication</li>
         </ul>
       <li> Results </li>
         <ul class = "inner">
-          <li> Volcanic Ash </li>
-          <li> Chemistry </li>
-          <li> Greenhouse Gas </li>
+          <li> Polydisperse </li>
+          <li> Bidisperse </li>
+          <li> Communication </li>
         </ul>
-       <li> The future... </li>
+       <li> Summary / observations </li>
     </ul>
   </section>
 
-
   <section>
-    <h4> Schematically... </h4>
+    <h4> LAMMPS neighbour bins</h4>
 
-    <img src = "./schematic2.svg" alt = "Schematic" width = "90%"
-         class = "plain">
+    <p style = "font-size: 80%; margin: 0em">
+    Start with cell list! [Alder and Wainwright (1959)] </p>
 
-  </section>
+    <img src = "./slide1.svg" alt = "Sinple cell list" width = "60%" class = "plain">
 
-
-  <section>
-    <h4>Parallelism</h4>
-
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Shared memory ("threads") </li>
-        <ul class = "inner">
-          <li> Pros: "easy"; incremental </li>
-          <li> Cons: limits you to 1 node; efficiency can be elusive
-          <li> Standard model: OpenMP
-          <li> Compiler chops up loops </li>
-        </ul>
-      <li> Distributed memory ("processes" or "tasks")</li>
-        <ul class = "inner">
-          <li> Pros: allows larger problems; better time-to-solution </li>
-          <li> Cons: incremental development more difficult </li>
-          <li> Standard model: Message Passing Interface (MPI) </li>
-          <li> Programmer must distribute work </li>
-        </ul>
-    </ul>
-
-
-  </section>
-
-
-  <section>
-    <h4> Thread parallelism </h4>
-
-    <p style = "font-size: 80%"> Source generates particles </p>
-    <img src = "./array1.svg" alt = "An array of particles in memory"
-         class = "plain">
-
-    <p style = "font-size: 80%; margin: 0em"> Update particles... </p>
+    <p style = "font-size: 80%; margin: 0em">
+    Implementation: <code> NBinStandard</code> extends <code>NBin</code></p>
 
     <pre><code class = "fortran" data-trim data-noescape>
-    <p class = "fragment" style = "margin: 0em;">!$omp parallel do</p>
-    do n = 1, nParticles
-      call particleUpdateMe(n, metData, ...)
-    end do
+    "neighbor 0.5 bin"
+    "neighbor 0.5 nsq"
     </code></pre>
 
-    <img src = "./array2.svg" alt = "Particles distributed between threads"
-         class = "fragment plain">
-
   </section>
 
   <section>
-    <h4> Output </h4>
-    <p style = "font-size: 80%"> Particles may contribute to output... </p>
+    <h4> LAMMPS neighbour stencils (1)</h4>
 
+    <p style = "font-size: 80%; margin: 0em">
+    Small and larger particle </p>
 
-    <img src = "./array1+output.svg" alt = "Particles contibute to output"
-         class = "plain">
+    <img src = "./slide2.svg" alt = "Sinple cell list" width = "60%" class = "plain">
 
-  </section>
-
-
-  <section>
-
-     <img width = "80%"
-          src = "https://upload.wikimedia.org/wikipedia/commons/9/97/Caricature_gillray_plumpudding.jpg"
-          alt = "James Gillray cartoon showing Pitt and Napoleon">
-
-      <br>
-      <p style = "font-size: 30%; text-align: center;">
-         Reference: https://upload.wikimedia.org/wikipedia/commons/9/97/Caricature_gillray_plumpudding.jpg </p> 
-
-  </section>
-
-  <section>
-    <h4> Distributed parallelism (1) </h4>
-
-    <p style = "font-size: 80%"> A copy of the source generates a subset of particles... </p>
-
-    <img src = "./array3.svg" alt = "Particles distributed between tasks"
-         class = "plain">
-
-    <p style = "font-size: 80%; margin: 0em"> Update particles... </p>
+    <p style = "font-size: 80%; margin: 0em">
+    Implementation: various stencils extend <code>NStencil</code></p>
 
     <pre><code class = "fortran" data-trim data-noescape>
-    do n = 1, nParticlesLocal
-      call particleUpdateMe(n, metData, ...)
-    end do
+    "neighbor 0.5 multi"
+    "newton off"
     </code></pre>
 
   </section>
 
 
   <section>
-    <h4> Output (again)</h4>
-    <p style = "font-size: 80%"> Particles may contribute to output... </p>
+    <h4> LAMMPS neighbour pair lists</h4>
 
-    <img src = "./array4.svg" alt = "Particles contibute to output"
-         class = "plain">
 
-    <dl class = "fragment" style = "font-size: 80%; font-weight: normal; margin: 0em">
-    <dt style = "font-weight: normal"> Solution </dt>
-       <ul class = "inner">
-         <li> Each tasks forms its own contribution to output </li>
-         <li> Communicate (via messages) and add contributions (a reduction) </li>
-         <li> Single MPI task performs output to file </li>
-       </ul>
-    </dl>
+    <p style = "font-size: 80%; margin: 0em">
+    Implementation: various classes extend <code>NPair</code></p>
+
+
 
   </section>
 
 
 
   <section>
-    <h4> Chemistry </h4>
+    <h4> LAMMPS stencils again</h4>
 
-    <dl style = "font-size: 80%;">
-    <dt style = "font-weight: normal"> Problem </dt>
-       <ul class = "inner">
-         <li> Chemistry performed on an Eulerian grid, so ... </li>
-         <li> All particles in a given Eulerian cell must be present
-              on same MPI task</li>
-       </ul>
-     </dl>
+    <p style = "font-size: 80%; margin: 0em">
+    Problem </p>
 
-    <dl class = "fragment" style = "font-size: 80%; margin-top: 1em;">
-    <dt style = "font-weight: normal"> Solution </dt>
-       <ul class = "inner">
-         <li> Distribution of particles must respect particle position
-         <li> Source generates particles on relevant MPI task
-         <li> Particles which move may have to be moved between MPI tasks
-       </ul>
-     </dl>
+    <img src = "./slide3.svg" alt = "Sinple cell list" width = "60%" class = "plain">
+
+    <p style = "font-size: 80%; margin: 0em">
+    Large separation of scales not handled well by stencil</p>
 
   </section>
 
   <section>
+    <h4> Multi-level implementation</h4>
 
-    <h4> Domain Decomposition</h4>
+    <p style = "font-size: 80%; margin: 0em">
+    Bin different size particles in different size cell lists</p>
 
-    <img class = "plain" src = "./path1.svg" alt = "Particle changes MPI task">
+    <img src = "./slide4.svg" alt = "Sinple cell list" width = "80%" class = "plain">
 
-    <dl style = "font-size: 80%">
-      <dt style = "font-weight: normal;"> In fact:</dt>
-      <ul class = "inner">
-      <li> Group all particles crossing a particular
-                                boundary into single message</li>
-     </ul>
-     </dl>
+    <p style = "font-size: 80%; margin: 0em">
+    Particles identified by standard <code>type</code> attribute</p>
+
+    <p> </p>
+
+    <p style = "font-size: 80%; margin: 0em">
+    Implementation: <code> NBinByType </code> extends <code> NBin</code></p>
+
+    <pre><code class = "fortran" data-trim data-noescape>
+    "neighbor 0.5 bytype"
+    </code></pre>
 
   </section>
 
   <section>
+    <h4> Multi-level implementation (2)</h4>
 
-    <h4> Other concerns </h4>
+    <p style = "font-size: 80%; margin: 0em">
+    Cross-type interactions</p>
 
-    <p style = "font-size: 80%"> Reproducability </p>
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Code gives same result independent of threads/tasks </li>
-      <li> But not the same result as previous versions ...</li>
-        <ul class = "inner">
-          <li> Random number generator initialisation per particle </li>
-          <li> Serial algorithms replaced by parallel algorithms </li>
-        </ul>
-    </ul>
+    <img src = "./slide5.svg" alt = "Sinple cell list" width = "70%" class = "plain">
 
-    <p style = "font-size: 80%; margin-top: 6em;"> Efficiency </p>
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Speed up is limited by the fraction of code that is serial </li>
-        <ul class = "inner">
-          <li> Speed up usually:   $S = T_1 / T_N$ </li>
-          <li> (Parallel) Efficiency: $E = S / N$ </li>
-        </ul>
-    </ul>
+    <p style = "font-size: 80%; margin: 0em">
+    Implementation: new stencils extend <code> NStencil</code></p>
 
-    
   </section>
 
   <section>
-    <h4> Volcanic Ash Benchmark </h4>
-
-
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-       <li> Askja (Iceland)
-        <ul class = "inner">
-          <li> NWP data: global UM at 3 hours
-          <li> Smaller: 750,000 particles; Larger: 7,500,000 particles </li>
-        </ul>
-    </ul>
-
-    <img width = "90%" src = "./fig-bench-vaac.svg"
-         alt = "Thread and task efficiency" class = "plain">
-  </section>
-
-
-  <section>
-    <h4> Chemistry Benchmark </h4>
-
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-       <li> UK plus north-west Europe (Eulerian grid at c. 10km)
-        <ul class = "inner">
-          <li>  NWP data: c. 0.5$^\circ$ in horizontal, 50 vertical levels at 4 hours</li>
-          <li>  STOCHEM with 42 species</li>
-        </ul>
-    </ul>
-
-    <img width = "90%" src = "./fig-bench-chem.svg"
-         alt = "Thread and task efficiency" class = "plain">
-  </section>
-
-  <section>
-    <h4> Greenhouse Gas Benchmark </h4>
-
-    <ul style = "font-size: 70%; display: block; float: left; width: 100%">
-       <li> UK plus surrounding region (backwards in time)
-        <ul class = "inner">
-          <li> NWP data: 1.5km, 57 vertical levels at 1 hour </li>
-          <li> Original 480,000 particles (c. 30 minutes 1 node); 48 million < 4 hours </li>
-        </ul>
-    </ul>
-
-    <img width = "90%" src = "./fig-bench-greenhouse.svg"
-         alt = "Efficiency for different problem size" class = "plain">
+    <h4> Communication</h4>
 
   </section>
 
 
   <section>
-    <h4>Summary </h4>
-
-    <p style = "font-size: 80%"> Aim of the work: </p>
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Produce a functional distributed memory version </li>
-      <li> More memory allows more particles:</li>
-        <ul class = "inner">
-          <li> Allow increased size/resolution while maintaining time-to-solution</li>
-          <li> Maintain statistical accuracy </li>
-        </ul>
-    </ul>
-
-    <p style = "font-size: 80%; margin-top: 6em;"> Exposed a number of bottlenecks: </p>
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Output </li>
-        <ul class = "inner">
-          <li> ASCII could be replaced by netCDF </li>
-        </ul>
-    </ul>
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Release of particles</li>
-        <ul class = "inner">
-          <li> Requires a parallel implementation </li>
-        </ul>
-    </ul>
-    <ul style = "font-size: 80%; display: block; float: left; width: 100%">
-      <li> Reading large NWP meteorological data sets</li>
-        <ul class = "inner">
-          <li> Improved threaded parallelism should help </li>
-        </ul>
-    </ul>
-
+    <h4> Polydisperse result</h4>
 
   </section>
+
+
+  <section>
+    <h4> Bidisperse result</h4>
+
+  </section>
+
+
+  <section>
+    <h4> Communication / scaling</h4>
+
+  </section>
+
+
+  <section>
+
+    <h4> Summary / observations</h4>
+
+  </section>
+
 
 
 
@@ -327,41 +189,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   </section>
   <section>
     <h4> Additional slides...</h4>
-  </section>
-
-
-
-  <section>
-    <h4> Data Structures</h4>
-
-    <pre><code class = "fortran" data-trim>
-       type (Particle_)
-         integer (int64)        :: iUP     ! unique identifier
-         real    (pos_t)        :: x(3)    ! position
-         integer (int32)        :: iCoord  ! coordinate system
-         ...
-         type (Extra_), pointer :: extra   ! optional extra data
-         double  (real64)       :: mass(:) ! chemical species
-       end type Particle_
-    </code></pre>
-
-  <p style = "font-size: 80%">
-  Memory requirement
-  </p>
-  <pre><code class = "fortran" data-trim>
-    Particle_  ! c. 128 bytes
-    Extra_     ! c. 400 bytes (if required)
-    mass(:)    ! typically 42 species (if required)
-  </code></pre>
-
-  </section>
-
-  <section>
-    <h4> Tests </h4>
-
-    <p style = "font-size: 80%">
-    Link to <a href = "file:///Users/kevin/work/ecdf-svn/kevin/trunk/name/refactor/tests/coverage/index.html">test coverage</a></p>
-
   </section>
 
 </div>
