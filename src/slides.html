@@ -73,9 +73,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <h4> LAMMPS neighbour stencils (1)</h4>
 
     <p style = "font-size: 80%; margin: 0em">
-    Small and larger particle </p>
+    Small and larger particle [t'Veld <i>et al.</i>(2008)]</p>
 
-    <img src = "./slide2.svg" alt = "Sinple cell list" width = "60%" class = "plain">
+    <img src = "./slide2.svg" alt = "Sinple cell list" width = "60%"
+         class = "plain">
 
     <p style = "font-size: 80%; margin: 0em">
     Implementation: various stencils extend <code>NStencil</code></p>
@@ -91,11 +92,28 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <section>
     <h4> LAMMPS neighbour pair lists</h4>
 
-
     <p style = "font-size: 80%; margin: 0em">
-    Implementation: various classes extend <code>NPair</code></p>
+    [Verlet (1967)]</p>
+    
+    <p style = "font-size: 80%; margin: 0em">
+    Implementation: various classes extend <code>NPair</code>
+    </p>
+    <ul style = "font-size: 70%; display: block; float: left; width: 100%;
+                margin: 1em">
+      <li> For each particle, maintain list a of neighbours </li>
+      <li> List is searched to compute actual interactions </li>
+    </ul>
 
-
+    
+    <p style = "font-size: 80%; margin: 0em">
+    Final /bin/stencil/pair selection is reported...</p>
+    <pre><code class = "fortran" data-trim data-noescape>
+  "(1) pair gran/hooke/history/multi, perpetual
+      attributes: half, newton on, size, history
+      pair build: half/size/bin/newton
+      stencil: half/bin/3d/newton
+      bin: standard"
+    </code></pre>
 
   </section>
 
@@ -107,7 +125,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <p style = "font-size: 80%; margin: 0em">
     Problem </p>
 
-    <img src = "./slide3.svg" alt = "Sinple cell list" width = "60%" class = "plain">
+    <img src = "./slide3.svg" alt = "Sinple cell list" width = "60%"
+         class = "plain">
 
     <p style = "font-size: 80%; margin: 0em">
     Large separation of scales not handled well by stencil</p>
@@ -118,9 +137,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <h4> Multi-level implementation</h4>
 
     <p style = "font-size: 80%; margin: 0em">
-    Bin different size particles in different size cell lists</p>
+    Bin different size particles in different size cell lists!</p>
 
-    <img src = "./slide4.svg" alt = "Sinple cell list" width = "80%" class = "plain">
+    <img src = "./slide4.svg" alt = "Sinple cell list" width = "80%"
+         class = "plain">
 
     <p style = "font-size: 80%; margin: 0em">
     Particles identified by standard <code>type</code> attribute</p>
@@ -137,12 +157,23 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   </section>
 
   <section>
-    <h4> Multi-level implementation (2)</h4>
+    <h4> Multi-level implementation: Stencils</h4>
 
     <p style = "font-size: 80%; margin: 0em">
-    Cross-type interactions</p>
+    Heirarchy favours compact stencils:
+    <ul style = "font-size: 70%; display: block; float: left; width: 100%;
+                margin: 1em">
+      <li> Small-small neighbours located in small
+           cell list </li>
+      <li> Large-large neighbours located in large
+           cell list </li>
+    </ul>
 
-    <img src = "./slide5.svg" alt = "Sinple cell list" width = "70%" class = "plain">
+    <p style = "font-size: 80%; margin: 0em">
+    What about cross-type interactions?</p>
+
+    <img src = "./slide5.svg" alt = "Sinple cell list" width = "40%"
+         class = "plain">
 
     <p style = "font-size: 80%; margin: 0em">
     Implementation: new stencils extend <code> NStencil</code></p>
@@ -152,11 +183,47 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <section>
     <h4> Communication</h4>
 
+    <p style = "font-size: 80%; margin: 0em">
+    Domain decomposition plus message passing</p>
+
+    <img src = "./comm.svg" alt = "Communication schematic" width = "40%"
+         class = "plain" style = "float: left">
+
+    <ul style = "font-size: 70%; display: block; float: right; width: 50%;
+                margin: 1em">
+      <li> Multi approach: different sizes have different cut offs</li>
+      <li> Small is $r_{sl}$; large is $r_{ll}$</li><br>
+      <li> New approach:</li>
+      <li> Small is $r_{ss}$; large still $r_{ll}$</li>
+      <li> ("Newton" only)
+    </ul>
+
   </section>
 
 
   <section>
     <h4> Polydisperse result</h4>
+
+    <img src = "./dunkirk.svg" alt = "Dunkirk Sand" width = "40%"
+         class = "plain" style = "float: right">
+
+
+    <p style = "font-size: 80%; margin: 0em">
+    Model system based on sand</p>
+
+    <ul style = "font-size: 70%; display: block; float: left; width: 50%;
+                margin: 1em">
+      <li> Real distribution scaled to set $d_{max}/d_{min}$</li>
+      <li> We use two types (two levels small/large) </li>
+      <li> How do we split the size distribution into two types?<br>
+    </ul>
+
+
+    <img class = "fragment" src = "./poly-compare.svg" alt = "Results"
+         width = "100%"
+         class = "plain"
+         style = "float: right; border: none; box-shadow:  none;">
+
 
   </section>
 
@@ -164,11 +231,26 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <section>
     <h4> Bidisperse result</h4>
 
+    <p style = "font-size: 80%; margin: 0em">
+    Exactly two sizes</p>
+
+    <ul style = "font-size: 60%; display: block; float: left; width: 100%;
+                margin: 1em;">
+      <li> $R = 1$ and $R = R$ for $R = 10, 20, 40, 80, 100$</li>
+    </ul>
+
+    <img src = "./bi-compare.svg" alt = "Bidisperse results" width = "90%"
+         class = "plain" style = "float: center;;">
+
+
   </section>
 
 
   <section>
     <h4> Communication / scaling</h4>
+
+    <img src = "./scaling.svg" alt = "Scaling results" width = "90%"
+         class = "plain" style = "float: center;;">
 
   </section>
 
@@ -176,6 +258,24 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <section>
 
     <h4> Summary / observations</h4>
+
+
+    <ul style = "font-size: 80%; display: block; float: left; width: 100%;
+                margin: 1em;">
+      <li> Existing multi approach extended to multi-level picture</li>
+      <li> Effective for polydisperse systems</li>
+      <li> Good for bidisperse systems to 100:1</li>
+      <br>
+      <li> More robust communication?</li>
+      <li> Decouple from type system?</li>
+    </ul>
+
+    <br>
+    <p style = "font-size: 70%; margin: 0em">
+    <b>Acknowledgements</b></p>
+    <p style = "font-size: 70%; margin: 0em; width: 80%">
+    Ishan Srivastava of Sandia for making available some extra LAMMPS
+    granular classes. 
 
   </section>
 
